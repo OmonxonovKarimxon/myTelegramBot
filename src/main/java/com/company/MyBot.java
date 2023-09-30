@@ -30,7 +30,10 @@ public class MyBot extends TelegramLongPollingBot {
     @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
-        System.out.println("hello horld");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
 
         long chatId = BotService.getChatId(update);
         User user = BotService.getUserFromListByChatId(chatId);
