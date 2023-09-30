@@ -34,6 +34,11 @@ public class MyBot extends TelegramLongPollingBot {
         System.out.println("hello horld djfv dfbvdfb");
         System.out.println("hello horld djfv dfbvdfb");
         System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
+        System.out.println("hello horld djfv dfbvdfb");
 
         long chatId = BotService.getChatId(update);
         User user = BotService.getUserFromListByChatId(chatId);
