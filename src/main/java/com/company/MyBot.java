@@ -1,6 +1,6 @@
 package com.company;
 
-import lombok.SneakyThrows;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -27,7 +28,7 @@ public class MyBot extends TelegramLongPollingBot {
     }
     String groupNumber;
     String ziyoratTuri;
-    @SneakyThrows
+
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -39,14 +40,26 @@ public class MyBot extends TelegramLongPollingBot {
             if (update.getMessage().hasText()) {
                 String text = update.getMessage().getText();
                 if (text.equals("/start")||user.getBotState().equals(BotState.START)) {
-                    execute(BotService.start(update));
+                    try {
+                        execute(BotService.start(update));
+                    } catch (TelegramApiException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else if (user.getBotState().equals(BotState.TRIP_TYPE)) {
                     ziyoratTuri = text;
-                    execute(BotService.ziyoratTuri(update));
+                    try {
+                        execute(BotService.ziyoratTuri(update));
+                    } catch (TelegramApiException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else if (user.getBotState().equals(BotState.GROUP_NUMBER)) {
                     int ka = Integer.parseInt(text);
                     groupNumber = text;
-                    execute(BotService.groupNumber(update));
+                    try {
+                        execute(BotService.groupNumber(update));
+                    } catch (TelegramApiException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
             }
@@ -86,6 +99,8 @@ public class MyBot extends TelegramLongPollingBot {
 
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
 

@@ -1,5 +1,7 @@
 package com.company;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -74,9 +76,9 @@ public class BotService {
 
     public static String sendFile(List<String> row, String ziyoratTuri, String groupNumber, long chatId) throws IOException {
 
-        String name =row.get(0).substring(0, row.get(0).length()-2)+" "+ row.get(1).toUpperCase() + " " + row.get(2).toUpperCase();
+        String name = row.get(0).substring(0, row.get(0).length() - 2) + " " + row.get(1).toUpperCase() + " " + row.get(2).toUpperCase();
         String passport = row.get(5);
-        String imagePath = "./src/main/resources/"+name+".png";
+        String imagePath = "./src/main/resources/" + name + ".png";
 
         String surname;
         if (row.get(3).equals("XXX")) {
@@ -85,7 +87,7 @@ public class BotService {
             surname = row.get(3).toUpperCase();
         }
 
-
+        String ka = "dkhwbdhbw";
         //Read the image
         BufferedImage image = ImageIO.read(new File("./src/main/resources/copy1.png"));
 
@@ -137,8 +139,6 @@ public class BotService {
         //write the image
 
         ImageIO.write(image, "png", new File(imagePath));
-
-
 
 
         return imagePath;
